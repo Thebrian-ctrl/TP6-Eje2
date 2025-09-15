@@ -218,6 +218,11 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
 
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.setEnabled(false);
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,7 +372,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         
         int filaSeleccionada = jTableProductos.getSelectedRow();
         
-        if(filaSeleccionada!=1){
+        if(filaSeleccionada!=-1){
             int codigo = (Integer)jTableProductos.getValueAt(filaSeleccionada, 0);
             String descripcion = (String)jTableProductos.getValueAt(filaSeleccionada, 1);
             double precio = (Double)jTableProductos.getValueAt(filaSeleccionada, 2);
@@ -392,8 +397,35 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         // TODO add your handling code here:
-        
+            int codigo = Integer.parseInt(jTextCodigo.getText());
+            String descripcion = jTextDescripcion.getText();
+            double precio = Double.parseDouble(jTextPrecio.getText());
+            Categoria carNueva = (Categoria)jComboRubro.getSelectedItem();
+            int sotck = (Integer) jSpinnerStock.getValue();
+            
+            productoActualizado.setCodigo(codigo);
+            productoActualizado.setDescripcion(descripcion);
+            productoActualizado.setPrecio(precio);
+            productoActualizado.setRubro(carNueva);
+            productoActualizado.setStock(sotck);
+            
+            modificarProducto(productoActualizado);
+            
+            productoActualizado=null;
+            
+            limpiarCampos();
+            desactivar();
+            llenarTabla();
+            jButtonActualizar.setEnabled(false);
     }//GEN-LAST:event_jButtonActualizarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // TODO add your handling code here:
+        borrarProducto(productoActualizado);
+        desactivar();
+        llenarTabla();
+        jButtonEliminar.setEnabled(false);
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -506,5 +538,24 @@ private void limpiarCampos(){
             modeloTabla.removeRow(i);
         }
     }
-
+   
+    private void modificarProducto(Producto productoActualizado){
+    
+        for (Producto a : pro) {
+            if( a.getCodigo()== productoActualizado.getCodigo()){
+                a.setCodigo(productoActualizado.getCodigo());
+                a.setDescripcion(productoActualizado.getDescripcion());
+                a.setPrecio(productoActualizado.getPrecio());
+                a.setRubro(productoActualizado.getRubro());
+                a.setStock(productoActualizado.getStock());
+            
+            }
+        }
+    
+    }
+    
+    private void borrarProducto(Producto produ){
+    
+        pro.remove(produ);
+    }
 }
