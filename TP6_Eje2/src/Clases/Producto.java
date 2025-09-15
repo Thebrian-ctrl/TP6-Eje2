@@ -5,6 +5,8 @@
  */
 package Clases;
 
+import java.util.TreeSet;
+
 /**
  *
  * @author paula
@@ -16,6 +18,11 @@ public class Producto implements Comparable<Producto>{
     private int stock;
     private Categoria rubro;
 
+    public Producto() {
+    }
+    
+    
+    
     public Producto(int codigo, String descripcion, double precio, int stock, Categoria rubro) {
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -74,8 +81,15 @@ public class Producto implements Comparable<Producto>{
             return -1;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", precio=" + precio + ", stock=" + stock + ", rubro=" + rubro + '}';
+    }
     
     
+
+   
     
     
 }

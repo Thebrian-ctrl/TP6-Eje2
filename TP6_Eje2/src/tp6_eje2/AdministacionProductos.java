@@ -7,6 +7,8 @@ package tp6_eje2;
 
 import Clases.Categoria;
 import Clases.Producto;
+import java.util.TreeSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,12 +21,15 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
      * Creates new form AdministacionProductos
      */
     
-    
+    TreeSet<Producto> pro = new TreeSet<>();
     DefaultTableModel modeloTabla = new DefaultTableModel();
+    
+    Producto productoActualizado = new Producto();
     public AdministacionProductos() {
         initComponents();
         cargarCombo();
         inicializarTabla();
+        desactivar();
     }
 
     /**
@@ -59,6 +64,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         jButtonActualizar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
 
+        setForeground(java.awt.Color.white);
         setTitle("De Todo S.A : Productos");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -66,6 +72,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Filtrar Por Categoria:");
 
+        jComboFiltrarCategoria.setBorder(null);
         jComboFiltrarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboFiltrarCategoriaActionPerformed(evt);
@@ -83,9 +90,15 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProductos);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel3.setText("Codigo:");
 
@@ -96,6 +109,31 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         jLabel6.setText("Rubro:");
 
         jLabel7.setText("Stock:");
+
+        jTextCodigo.setEnabled(false);
+        jTextCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextCodigoFocusLost(evt);
+            }
+        });
+
+        jTextDescripcion.setEnabled(false);
+        jTextDescripcion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextDescripcionFocusLost(evt);
+            }
+        });
+
+        jTextPrecio.setEnabled(false);
+        jTextPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextPrecioFocusLost(evt);
+            }
+        });
+
+        jComboRubro.setEnabled(false);
+
+        jSpinnerStock.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,12 +194,30 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         });
 
         jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
 
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setEnabled(false);
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.setEnabled(false);
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,9 +300,100 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         
         Categoria categoriaSeleccionada = (Categoria) jComboFiltrarCategoria.getSelectedItem();
         
+        llenarTabla();
+        
         
         
     }//GEN-LAST:event_jComboFiltrarCategoriaActionPerformed
+
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        // TODO add your handling code here:
+        activar();
+        jButtonGuardar.setEnabled(true);
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jTextCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextCodigoFocusLost
+        // TODO add your handling code here:
+        String valor = "[0-9]*";
+        
+        if(!jTextCodigo.getText().matches(valor)){
+            JOptionPane.showMessageDialog(this, "Solo se permiten numeros en el cuadro de Codigo.");
+            jTextCodigo.requestFocus();
+        }
+    }//GEN-LAST:event_jTextCodigoFocusLost
+
+    private void jTextDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDescripcionFocusLost
+        // TODO add your handling code here:
+        if(jTextDescripcion.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripcion.");
+            jTextDescripcion.requestFocus();
+        }
+    }//GEN-LAST:event_jTextDescripcionFocusLost
+
+    private void jTextPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPrecioFocusLost
+        // TODO add your handling code here:
+        try{
+        double precio = Double.parseDouble(jTextPrecio.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Ingrese un precio correcto.");
+            jTextPrecio.requestFocus();
+        }
+    }//GEN-LAST:event_jTextPrecioFocusLost
+
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // TODO add your handling code here:
+        
+        if(!validarCampos()){
+            return;
+        }
+        Producto produ = new Producto();
+        produ.setCodigo(Integer.parseInt(jTextCodigo.getText()));
+        produ.setDescripcion(jTextDescripcion.getText());
+        produ.setPrecio(Double.parseDouble(jTextPrecio.getText()));
+        produ.setRubro((Categoria)jComboRubro.getSelectedItem());
+        produ.setStock((Integer)jSpinnerStock.getValue());
+        
+        pro.add(produ);
+        
+        limpiarCampos();
+        desactivar();
+        jButtonGuardar.setEnabled(false);
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jTableProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductosMouseClicked
+        // TODO add your handling code here:
+        jButtonActualizar.setEnabled(true);
+        jButtonEliminar.setEnabled(true);
+        
+        int filaSeleccionada = jTableProductos.getSelectedRow();
+        
+        if(filaSeleccionada!=1){
+            int codigo = (Integer)jTableProductos.getValueAt(filaSeleccionada, 0);
+            String descripcion = (String)jTableProductos.getValueAt(filaSeleccionada, 1);
+            double precio = (Double)jTableProductos.getValueAt(filaSeleccionada, 2);
+            Categoria rubro = (Categoria)jTableProductos.getValueAt(filaSeleccionada, 3);
+            int stock = (Integer)jTableProductos.getValueAt(filaSeleccionada, 4);
+            
+            jTextCodigo.setText(codigo+"");
+            jTextDescripcion.setText(descripcion);
+            jTextPrecio.setText(precio+"");
+            jComboRubro.setSelectedItem(rubro);
+            jSpinnerStock.setValue(stock);
+            
+            activar();
+        
+            productoActualizado.setCodigo(codigo);
+            productoActualizado.setDescripcion(descripcion);
+            productoActualizado.setPrecio(precio);
+            productoActualizado.setRubro(rubro);
+            productoActualizado.setStock(stock);
+        }
+    }//GEN-LAST:event_jTableProductosMouseClicked
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -299,6 +446,65 @@ private void inicializarTabla(){
         
     }
 
+private void activar(){
+    jTextCodigo.setEnabled(true);
+    jTextDescripcion.setEnabled(true);
+    jTextPrecio.setEnabled(true);
+    jComboRubro.setEnabled(true);
+    jSpinnerStock.setEnabled(true);
+    
 
+}
+
+private void desactivar(){
+    jTextCodigo.setEnabled(false);
+    jTextDescripcion.setEnabled(false);
+    jTextPrecio.setEnabled(false);
+    jComboRubro.setEnabled(false);
+    jSpinnerStock.setEnabled(false);
+
+}
+
+private boolean validarCampos(){
+    if(jTextCodigo.getText().isEmpty() ||
+            jTextDescripcion.getText().isEmpty()||
+            jTextPrecio.getText().isEmpty() ||
+            jComboRubro.getSelectedItem() == null ) {
+        JOptionPane.showMessageDialog(this, "Ingrese los valores a guardar");
+        return false;
+    }
+           
+    return true;
+}
+
+private void limpiarCampos(){
+    jTextCodigo.setText("");
+    jTextDescripcion.setText("");
+    jTextPrecio.setText("");
+    jComboRubro.setSelectedIndex(0);
+    jSpinnerStock.setValue(0);
+
+}
+    private void llenarTabla(){
+        Categoria seleccionada = (Categoria)jComboFiltrarCategoria.getSelectedItem();
+        borrarFilas();
+        if(seleccionada!= null){
+            for (Producto p : pro) {
+                if(p.getRubro().equals(seleccionada)){
+                modeloTabla.addRow(new Object[]{p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getRubro(), p.getStock()});
+                
+                }
+            }
+    }
+    
+    }
+    
+    private void borrarFilas(){
+        int f = modeloTabla.getRowCount()-1;
+        
+        for (int i = f; i >= 0; i--) {
+            modeloTabla.removeRow(i);
+        }
+    }
 
 }

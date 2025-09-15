@@ -14,4 +14,5 @@ public enum Categoria {
     LIMPIEZA,
     PERFUMERIA
     
+    
 }
