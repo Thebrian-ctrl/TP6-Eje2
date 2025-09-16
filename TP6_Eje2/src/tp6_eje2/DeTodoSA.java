@@ -18,7 +18,7 @@ public class DeTodoSA extends javax.swing.JFrame {
      public static TreeSet<Producto> listaProductos = new TreeSet<>();
     public DeTodoSA() {
         initComponents();
-        cargarProductos();
+       // cargarProductos();
     }
 
     /**
@@ -67,6 +67,11 @@ public class DeTodoSA extends javax.swing.JFrame {
         jMenuConsultas.setText("Consultas");
 
         jMenuPorNombre.setText("Por Nombre");
+        jMenuPorNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPorNombreActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuPorNombre);
 
         jMenuPorPrecio.setText("Por Precio");
@@ -78,6 +83,11 @@ public class DeTodoSA extends javax.swing.JFrame {
         jMenuConsultas.add(jMenuPorPrecio);
 
         jMenuPorRubro.setText("Por Rubro");
+        jMenuPorRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPorRubroActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuPorRubro);
 
         jMenuBar1.add(jMenuConsultas);
@@ -103,7 +113,9 @@ public class DeTodoSA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuPorPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPorPrecioActionPerformed
-        // TODO add your handling code here:
+        ConsultaPorPrecio agregar = new ConsultaPorPrecio();
+        agregar.setVisible(true);
+        Escritorio.add(agregar);
     }//GEN-LAST:event_jMenuPorPrecioActionPerformed
 
     private void jMenuProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProductosActionPerformed
@@ -113,9 +125,19 @@ public class DeTodoSA extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuProductosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMenuPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPorNombreActionPerformed
+            ConsultaPorNombre agregar= new ConsultaPorNombre();
+            agregar.setVisible(true);
+            Escritorio.add(agregar);
+    }//GEN-LAST:event_jMenuPorNombreActionPerformed
+
+    private void jMenuPorRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPorRubroActionPerformed
+        ConsultaPorRubro agregar = new ConsultaPorRubro();
+        agregar.setVisible(true);
+        Escritorio.add(agregar);
+    }//GEN-LAST:event_jMenuPorRubroActionPerformed
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -163,8 +185,8 @@ public class DeTodoSA extends javax.swing.JFrame {
 
 //------Prueva cargar productos-----
 private void cargarProductos(){
-    listaProductos.add(new Producto(10,"azucar",100.10,25,Categoria.COMESTIBLE));
-    listaProductos.add(new Producto(5,"yerba",25.25,5,Categoria.LIMPIEZA));
+   // listaProductos.add(new Producto(10,"azucar",100.10,25,Categoria.COMESTIBLE));
+   // listaProductos.add(new Producto(5,"yerba",25.25,5,Categoria.LIMPIEZA));
 }
 
 

@@ -28,6 +28,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Por Nombre"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuPorNombreActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuPorPrecio">
               <Properties>
@@ -41,6 +44,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Por Rubro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuPorRubroActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

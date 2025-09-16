@@ -147,7 +147,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextCodigo)
@@ -181,10 +181,15 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jSpinnerStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jButtonBuscar.setText("jButton1");
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa.png"))); // NOI18N
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jButtonCerrar.setText("Cerrar");
         jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +198,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo.png"))); // NOI18N
         jButtonNuevo.setText("Nuevo");
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +206,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardar.png"))); // NOI18N
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setEnabled(false);
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +215,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar.png"))); // NOI18N
         jButtonActualizar.setText("Actualizar");
         jButtonActualizar.setEnabled(false);
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +224,7 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.setEnabled(false);
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -231,66 +240,67 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonBuscar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCerrar)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel2)
-                                .addGap(28, 28, 28)
-                                .addComponent(jComboFiltrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButtonNuevo)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonGuardar)
-                .addGap(28, 28, 28)
-                .addComponent(jButtonActualizar)
-                .addGap(30, 30, 30)
-                .addComponent(jButtonEliminar)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jButtonNuevo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jButtonActualizar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jButtonEliminar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonCerrar))
+                                .addGap(21, 21, 21))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(75, 75, 75)
+                .addComponent(jComboFiltrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboFiltrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboFiltrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonBuscar)
-                        .addGap(139, 139, 139)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonCerrar)))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNuevo)
-                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonActualizar)
-                    .addComponent(jButtonEliminar))
+                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -359,10 +369,11 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         produ.setStock((Integer)jSpinnerStock.getValue());
         
         pro.add(produ);
-        
+        DeTodoSA.listaProductos.add(produ);
         limpiarCampos();
         desactivar();
         jButtonGuardar.setEnabled(false);
+        llenarTabla();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTableProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductosMouseClicked
@@ -373,6 +384,9 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
         int filaSeleccionada = jTableProductos.getSelectedRow();
         
         if(filaSeleccionada!=-1){
+            
+           
+           
             int codigo = (Integer)jTableProductos.getValueAt(filaSeleccionada, 0);
             String descripcion = (String)jTableProductos.getValueAt(filaSeleccionada, 1);
             double precio = (Double)jTableProductos.getValueAt(filaSeleccionada, 2);
@@ -386,7 +400,8 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
             jSpinnerStock.setValue(stock);
             
             activar();
-        
+            
+            productoActualizado =new Producto();
             productoActualizado.setCodigo(codigo);
             productoActualizado.setDescripcion(descripcion);
             productoActualizado.setPrecio(precio);
@@ -397,6 +412,8 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         // TODO add your handling code here:
+        
+        if(productoActualizado ==null)return;
             int codigo = Integer.parseInt(jTextCodigo.getText());
             String descripcion = jTextDescripcion.getText();
             double precio = Double.parseDouble(jTextPrecio.getText());
@@ -421,11 +438,63 @@ public class AdministacionProductos extends javax.swing.JInternalFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+        
+        if (productoActualizado == null)return;
+        
         borrarProducto(productoActualizado);
         desactivar();
         llenarTabla();
         jButtonEliminar.setEnabled(false);
+        limpiarCampos();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+       
+        
+        if(jTextCodigo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese un codigo a buscar", "ERROR_MENSSAGE",JOptionPane.QUESTION_MESSAGE);
+            jTextCodigo.requestFocus();
+            return;
+        }
+        
+        try{
+            int codigoBuscando = Integer.parseInt(jTextCodigo.getText());
+            boolean encontrado= false;
+            
+            for(Producto p : pro){
+                if(p.getCodigo()== codigoBuscando){
+                    // cargamos los datos del producto en los campos
+                    
+                    jTextDescripcion.setText(p.getDescripcion());
+                    jTextPrecio.setText(String.valueOf(p.getPrecio()));
+                    jComboRubro.setSelectedItem(p.getRubro());
+                    jSpinnerStock.setValue(p.getStock());
+                    
+                    
+                    //guardo el producto para actualizarlo o eliminarlo
+                    productoActualizado=p;
+                    activar();
+                    jButtonActualizar.setEnabled(true);
+                    jButtonEliminar.setEnabled(true);
+                    encontrado=true;
+                    break;
+                }
+            }
+            if(!encontrado){
+                JOptionPane.showMessageDialog(null, "No se encontro productO con ese codigo",
+                "PRODUCTO NO ENCONTRADO", JOptionPane.ERROR_MESSAGE);
+                
+                
+                limpiarCampos();
+                
+                
+            }
+            
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El codigo debe tener un valor numerico", "CAMPO INVALIDO",JOptionPane.WARNING_MESSAGE);
+            jTextCodigo.requestFocus();
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -519,9 +588,10 @@ private void limpiarCampos(){
 }
     private void llenarTabla(){
         Categoria seleccionada = (Categoria)jComboFiltrarCategoria.getSelectedItem();
-        borrarFilas();
+       // borrarFilas();    VEO COMO FUNCIONA
+       modeloTabla.setRowCount(0); // borramos todas las filas
         if(seleccionada!= null){
-            for (Producto p : pro) {
+            for (Producto p : DeTodoSA.listaProductos) {
                 if(p.getRubro().equals(seleccionada)){
                 modeloTabla.addRow(new Object[]{p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getRubro(), p.getStock()});
                 
@@ -551,11 +621,22 @@ private void limpiarCampos(){
             
             }
         }
+         for (Producto a : DeTodoSA.listaProductos) {
+            if( a.getCodigo()== productoActualizado.getCodigo()){
+                a.setCodigo(productoActualizado.getCodigo());
+                a.setDescripcion(productoActualizado.getDescripcion());
+                a.setPrecio(productoActualizado.getPrecio());
+                a.setRubro(productoActualizado.getRubro());
+                a.setStock(productoActualizado.getStock());
+            
+            }
+        }
     
     }
     
     private void borrarProducto(Producto produ){
     
         pro.remove(produ);
+        DeTodoSA.listaProductos.remove(produ);
     }
 }
