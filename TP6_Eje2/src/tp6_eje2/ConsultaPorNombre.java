@@ -139,6 +139,7 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
 
     private void jBuscarNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarNombreKeyReleased
         // TODO add your handling code here:
+        borrarFilas();
         for(Producto producto:DeTodoSA.listaProductos){
            if(producto.getDescripcion().startsWith(jBuscarNombre.getText())){
               modelo.addRow(new Object[]{
@@ -170,5 +171,13 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
         }
     };
     jTable1.setModel(modelo);
+    }
+    
+    private void borrarFilas(){
+      int f=jTable1.getRowCount()-1;
+      for(;f>=0;f--){
+         modelo.removeRow(f);
+      }
+      
     }
 }
