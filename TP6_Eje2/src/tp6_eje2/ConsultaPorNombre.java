@@ -5,17 +5,31 @@
  */
 package tp6_eje2;
 
+import Clases.Producto;
+import javax.swing.table.DefaultTableModel;
+
+
+
 /**
  *
  * @author paula
  */
 public class ConsultaPorNombre extends javax.swing.JInternalFrame {
+ DefaultTableModel modelo = new DefaultTableModel(){
+   
+    public boolean isCellEditable(int f, int c){
+    
+        return false; 
+        
+    }
 
+};
     /**
      * Creates new form ConsultaPorNombre
      */
     public ConsultaPorNombre() {
         initComponents();
+        armarCabecera();
     }
 
     /**
@@ -29,7 +43,7 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jBuscarNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonCerrar = new javax.swing.JButton();
@@ -38,7 +52,16 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Ingrese Descripcion:");
 
-        jTextField1.setText("jTextField1");
+        jBuscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarNombreActionPerformed(evt);
+            }
+        });
+        jBuscarNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBuscarNombreKeyReleased(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,7 +97,7 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -94,7 +117,7 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -109,13 +132,43 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
+    private void jBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarNombreActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jBuscarNombreActionPerformed
+
+    private void jBuscarNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarNombreKeyReleased
+        // TODO add your handling code here:
+        for(Producto producto:DeTodoSA.listaProductos){
+           if(producto.getDescripcion().startsWith(jBuscarNombre.getText())){
+              modelo.addRow(new Object[]{
+                 producto.getCodigo(),
+                 producto.getDescripcion(),
+                 producto.getPrecio(),
+                 producto.getStock()
+              });
+           }
+        }
+    }//GEN-LAST:event_jBuscarNombreKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField jBuscarNombre;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JTable jTableProductos;
+    private void armarCabecera(){
+         
+        String[] columnas = {"Código", "Descripción", "Precio", "Stock", "Rubro"};
+    modelo = new DefaultTableModel(columnas, 0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    jTable1.setModel(modelo);
+    }
 }
