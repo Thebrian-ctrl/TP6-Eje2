@@ -146,7 +146,8 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
                  producto.getCodigo(),
                  producto.getDescripcion(),
                  producto.getPrecio(),
-                 producto.getStock()
+                 producto.getStock(),
+                 producto.getRubro()
               });
            }
         }
@@ -163,7 +164,7 @@ public class ConsultaPorNombre extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTableProductos;
     private void armarCabecera(){
          
-        String[] columnas = {"Código", "Descripción", "Precio", "Stock", "Rubro"};
+        String[] columnas = {"Código", "Descripción", "Precio", "Stock", "Categoria"};
     modelo = new DefaultTableModel(columnas, 0) {
         @Override
         public boolean isCellEditable(int row, int column) {
